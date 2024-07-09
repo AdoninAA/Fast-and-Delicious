@@ -23,7 +23,6 @@ from fast_and_delicious import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('users.urls', namespace='user')),
-    path('', include('main.urls', namespace='main')),
 ]
 
 if settings.DEBUG:
