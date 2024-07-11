@@ -3,15 +3,12 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Category(models.Model):
-    image = models.ImageField(
-        upload_to='categories/',
-        verbose_name='Изображение',
-        blank=True
-    )
+    title = models.CharField(max_length=100)
     description = models.TextField(
         blank=True,
         verbose_name='Описание',
     )
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = _("Категория")
@@ -25,6 +22,7 @@ class Product(models.Model):
         unique=True,
         max_length=50,
     )
+    created_at = models.DateTimeField(auto_now_add=True)
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления', )
     price = models.DecimalField(
         max_digits=8,

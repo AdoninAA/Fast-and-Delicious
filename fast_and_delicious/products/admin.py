@@ -2,30 +2,29 @@ from django.contrib import admin
 from .models import Product, Category
 
 # Inline класс для модели Task
-class TaskInline(admin.TabularInline):
-    model = Task
+class ProductInline(admin.TabularInline):
+    model = Product
     extra = 0
-    fields = ('name', 'description', 'assignee', 'status', 'created_at', 'updated_at')
-    readonly_fields = ('created_at', 'updated_at')
+    fields = ('title', 'description', 'slug', 'created_at', 'pub_date', 'price', 'old_price', 'image', 'is_available', 'category')
+    readonly_fields = ('created_at',)
     can_delete = True
     show_change_link = True
 
 # Класс администратора для модели Project
-@admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created_at')
-    search_fields = ('name', 'description')
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    search_fields = ('title', 'description')
     ordering = ('created_at',)
     date_hierarchy = 'created_at'
 
     # Подключение inline для Task
-    inlines = [TaskInline]
+    inlines = [ProductInline]
 
 # Класс администратора для модели Task
-@admin.register(Task)
-class TaskAdmin(admin.ModelAdmin):
-    list_display = ('name', 'project', 'assignee', 'status', 'created_at', 'updated_at')
-    list_filter = ('status', 'assignee', 'project')
-    search_fields = ('name', 'description')
-    list_editable = ('status', 'assignee')
-    readonly_fields = ('created_at', 'updated_at')
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'slug', 'created_at', 'pub_date', 'price', 'old_price', 'image', 'is_available', 'category')
+    list_filter = ('category', 'is_available')
+    search_fields = ('title', 'description', 'is_available')
+    list_editable = ('price', 'is_available')
