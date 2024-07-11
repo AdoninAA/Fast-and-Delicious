@@ -5,7 +5,7 @@ from .models import Product, Category
 class ProductInline(admin.TabularInline):
     model = Product
     extra = 0
-    fields = ('title', 'description', 'slug', 'created_at', 'pub_date', 'price', 'old_price', 'image', 'is_available', 'category')
+    fields = ('title', 'description', 'slug', 'created_at', 'price', 'old_price', 'image', 'is_available', 'category')
     readonly_fields = ('created_at',)
     can_delete = True
     show_change_link = True
