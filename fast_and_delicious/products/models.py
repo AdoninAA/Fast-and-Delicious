@@ -1,10 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from taggit.managers import TaggableManager
-from taggit.models import GenericTaggedItemBase, TagBase
 
 
-class ItemTag(TagBase):
+class Category(models.Model):
     image = models.ImageField(
         upload_to='categories/',
         verbose_name='Изображение',
@@ -13,20 +11,11 @@ class ItemTag(TagBase):
     description = models.TextField(
         blank=True,
         verbose_name='Описание',
-        )
+    )
 
     class Meta:
         verbose_name = _("Категория")
         verbose_name_plural = _("Категории")
-
-
-class TaggedItem(GenericTaggedItemBase):
-    tag = models.ForeignKey(
-        ItemTag,
-        on_delete=models.CASCADE,
-        related_name="items",
-        verbose_name='Категория',
-    )
 
 
 class Product(models.Model):
@@ -51,14 +40,18 @@ class Product(models.Model):
     )
     image = models.ImageField(
         verbose_name='Изображение',
-        upload_to='items/', #Добавить источник
+        upload_to='items/',  # Добавить источник
         blank=True,
     )
     is_available = models.BooleanField(
         default=True,
         verbose_name='Доступно',
     )
-    tags = TaggableManager(through=TaggedItem, related_name="tagged_items", verbose_name='Категории', )
+    category = models.ForeignKey(
+        Category,
+        related_name='Категории',
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.title
@@ -67,4 +60,3 @@ class Product(models.Model):
         ordering = ['-price']
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
-
