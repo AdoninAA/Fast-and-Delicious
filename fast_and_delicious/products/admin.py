@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Product, Category
 
-# Inline класс для модели Task
+# Inline класс для модели Product
 class ProductInline(admin.TabularInline):
     model = Product
     extra = 0
@@ -10,7 +10,7 @@ class ProductInline(admin.TabularInline):
     can_delete = True
     show_change_link = True
 
-# Класс администратора для модели Project
+# Класс администратора для модели Category
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'created_at')
@@ -21,7 +21,7 @@ class CategoryAdmin(admin.ModelAdmin):
     # Подключение inline для Task
     inlines = [ProductInline]
 
-# Класс администратора для модели Task
+# Класс администратора для модели Product
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'slug', 'created_at', 'price', 'old_price', 'image', 'is_available', 'category')
