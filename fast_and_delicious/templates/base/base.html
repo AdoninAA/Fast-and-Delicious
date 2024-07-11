@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Food Delivery{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/HeaderFooter.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Food Delivery</h1>
+            </div>
+            <div class="contact-info">
+                <p>Phone: +1 800 123 4567</p>
+            </div>
+            <div class="header-buttons">
+                <button>Login</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Content will go here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-form">
+                <input type="text" placeholder="Your Name">
+                <input type="email" placeholder="Your Email">
+                <button type="submit">Subscribe</button>
+                <button type="button">Contact Us</button>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
