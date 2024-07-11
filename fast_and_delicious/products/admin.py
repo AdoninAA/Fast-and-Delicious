@@ -24,7 +24,7 @@ class CategoryAdmin(admin.ModelAdmin):
 # Класс администратора для модели Task
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'slug', 'created_at', 'pub_date', 'price', 'old_price', 'image', 'is_available', 'category')
+    list_display = ('title', 'description', 'slug', 'created_at', 'price', 'old_price', 'image', 'is_available', 'category')
     list_filter = ('category', 'is_available')
     search_fields = ('title', 'description', 'is_available')
     list_editable = ('price', 'is_available')
