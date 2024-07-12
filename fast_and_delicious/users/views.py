@@ -10,7 +10,6 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, TemplateView, UpdateView
 from cart.models import Cart
 from common.mixins import CacheMixin
-from products.models import Order, OrderItem
 
 from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
 
@@ -95,16 +94,6 @@ class UserProfileView(LoginRequiredMixin, CacheMixin , UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Home - Кабинет'
-
-        # Можно вынести сам запрос в отдельный метод этого класса контроллера
-        orders = Order.objects.filter(user=self.request.user).prefetch_related(
-                Prefetch(
-                    "orderitem_set",
-                    queryset=OrderItem.objects.select_related("product"),
-                )
-            ).order_by("-id")
-
-        context['orders'] = self.set_get_cache(orders, f"user_{self.request.user.id}_orders", 60)
         return context
 
 

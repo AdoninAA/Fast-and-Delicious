@@ -1,15 +1,8 @@
 from django.contrib import admin
-from cart.admin import CartTabAdmin
+from .models import User
+from cart.admin import CartAdmin  # Импортируем ваш InlineModelAdmin
 
-from users.models import User
+class UserAdmin(admin.ModelAdmin):  # Наследуем от ModelAdmin
+    inlines = [CartAdmin]  # Используем InlineModelAdmin
 
-# admin.site.register(User)
-
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ["username", "first_name", "last_name", "email",]
-    search_fields = ["username", "first_name", "last_name", "email",]
-
-    
-
-    inlines = [CartTabAdmin]
+admin.site.register(User, UserAdmin)  # Регистрируем модель и админ-класс
