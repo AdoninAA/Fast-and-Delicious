@@ -38,7 +38,7 @@ class Product(models.Model):
     )
     image = models.ImageField(
         verbose_name='Изображение',
-        upload_to='items/',  # Добавить источник
+        upload_to='media/items/',
         blank=True,
     )
     is_available = models.BooleanField(
