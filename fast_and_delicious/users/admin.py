@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import User
-from cart.admin import CartAdmin  # Импортируем ваш InlineModelAdmin
+from .models import UserProfile
+from cart.admin import CartTabAdmin  # Ensure this is correct
 
-class UserAdmin(admin.ModelAdmin):  # Наследуем от ModelAdmin
-    inlines = [CartAdmin]  # Используем InlineModelAdmin
+class UserProfileAdmin(admin.ModelAdmin):
+    inlines = [CartTabAdmin]
 
-admin.site.register(User, UserAdmin)  # Регистрируем модель и админ-класс
+admin.site.register(UserProfile, UserProfileAdmin)
