@@ -21,7 +21,7 @@ class CartMixin:
     
     def render_cart(self, request):
         user_cart = get_user_carts(request)
-        context = {"carts": user_cart}
+        context = {"cart": user_cart}
 
         # if referer page is create_order add key orders: True to context
         referer = request.META.get('HTTP_REFERER')
@@ -29,5 +29,5 @@ class CartMixin:
             context["order"] = True
 
         return render_to_string(
-            "carts/includes/included_cart.html", context, request=request
+            "cart/includes/included_cart.html", context, request=request
         )
