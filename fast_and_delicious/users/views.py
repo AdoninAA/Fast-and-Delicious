@@ -39,6 +39,7 @@ class UserLoginView(LoginView):
                     forgot_carts.delete()
                 # add new authorized user carts from anonimous session
                 Cart.objects.filter(session_key=session_key).update(user=user)
+                """Cart.objects.filter(user=user).update(user=user)"""
 
                 messages.success(self.request, f"{user.username}, Вы вошли в аккаунт")
 

@@ -11,6 +11,10 @@
         {% if product.old_price %}
         <p><strong>Old Price:</strong> {{ product.old_price }} рублей</p>
         {% endif %}
-        <button>Add to Cart</button>
+        <button>
+            <li class="nav-item">
+                <a class="nav-link  text-white" href="{% url "cart:cart_add" %}">Add to Cart</a>
+            </li>
+        </button>
     </div>
 </div>
