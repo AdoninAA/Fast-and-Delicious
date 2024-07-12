@@ -9,7 +9,7 @@ class IndexView(View):
         context = {
             'products': products
         }
-        return render(request, 'base/product_list.html', context)
+        return render(request, 'product_list.html', context)
 
 class ProductsDetailView(DetailView):
     model = Product
