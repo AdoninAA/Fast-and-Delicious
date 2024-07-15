@@ -4,7 +4,9 @@
 {% block modal_cart %}
 {% include "includes/cart_button.html" %}
 {% endblock  %}
-
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
 {% block content %}
 <div class="row">
     <div class="container mt-5">
