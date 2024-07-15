@@ -4,14 +4,10 @@
 Products - Food Delivery
 {% endblock %}
 
-{% block extra_css %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/product.css' %}">
-{% endblock %}
-
 {% block content %}
 <div class="product-list">
     {% for product in products %}
+
         {% include 'products/product_detail.html' %}
     {% endfor %}
 </div>
