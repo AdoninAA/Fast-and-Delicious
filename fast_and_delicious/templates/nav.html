@@ -1,12 +1,19 @@
 {% block extra_css %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+<script src="{% static 'js/product-list.js' %}"></script>
 {% endblock %}
 
-<nav>
-    <ul>
-        {% for category in categories %}
-           {% include 'category/category_detail.html' %}
-        {% endfor %}
-    </ul>
-</nav>
+<div class="nav-container-wrapper">
+    <div class="nav-container">
+        <nav>
+            <ul class="nav">
+                {% for category in categories %}
+                    <li>
+                        <a href="#category-{{ category.id }}">{{ category.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</div>

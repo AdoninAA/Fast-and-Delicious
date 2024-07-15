@@ -13,6 +13,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = _("Категория")
         verbose_name_plural = _("Категории")
+    __str__ = lambda self : self.title
 
 
 class Product(models.Model):
