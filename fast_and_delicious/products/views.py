@@ -6,7 +6,7 @@ from .models import Product, Category
 class IndexView(View):
     def get(self, request, *args, **kwargs):
         products = Product.objects.filter(is_available=True)  # Получаем доступные продукты
-        categories = Category.objects.values('title')
+        categories = Category.objects.all()
         context = {
             'products': products,
             'categories': categories
