@@ -10,39 +10,33 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, TemplateView, UpdateView
 from cart.models import Cart
 from common.mixins import CacheMixin
-
 from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
 
 
 class UserLoginView(LoginView):
     template_name = 'users/login.html'
     form_class = UserLoginForm
-    # success_url = reverse_lazy('main:index')
 
     def get_success_url(self):
-        redirect_page = self.request.POST.get('next', None)
+        redirect_page = self.request.POST.get('next')
         if redirect_page and redirect_page != reverse('user:logout'):
             return redirect_page
-        return reverse_lazy('main:index')
+        return reverse_lazy('products:index')
     
     def form_valid(self, form):
-        session_key = self.request.session.session_key
-
         user = form.get_user()
-
         if user:
             auth.login(self.request, user)
-            if session_key:
-                # delete old authorized user carts
-                forgot_carts = Cart.objects.filter(user=user)
-                if forgot_carts.exists():
-                    forgot_carts.delete()
-                # add new authorized user carts from anonimous session
-                Cart.objects.filter(session_key=session_key).update(user=user)
+            session_key = self.request.session.session_key
+            
+            Cart.objects.filter(user=user).delete()
+            Cart.objects.filter(session_key=session_key).update(user=user)
 
-                messages.success(self.request, f"{user.username}, Вы вошли в аккаунт")
-
-                return HttpResponseRedirect(self.get_success_url())
+            messages.success(self.request, f"{user.username}, Вы вошли в аккаунт")
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            messages.error(self.request, "Invalid login credentials.")
+            return self.form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -56,15 +50,11 @@ class UserRegistrationView(CreateView):
     success_url = reverse_lazy('users:profile')
 
     def form_valid(self, form):
+        user = form.save()
+        auth.login(self.request, user)
+
         session_key = self.request.session.session_key
-        user = form.instance
-
-        if user:
-            form.save()
-            auth.login(self.request, user)
-
-        if session_key:
-            Cart.objects.filter(session_key=session_key).update(user=user)
+        Cart.objects.filter(session_key=session_key).update(user=user)
 
         messages.success(self.request, f"{user.username}, Вы успешно зарегистрированы и вошли в аккаунт")
         return HttpResponseRedirect(self.success_url)
@@ -75,7 +65,7 @@ class UserRegistrationView(CreateView):
         return context
 
 
-class UserProfileView(LoginRequiredMixin, CacheMixin , UpdateView):
+class UserProfileView(LoginRequiredMixin, CacheMixin, UpdateView):
     template_name = 'users/profile.html'
     form_class = ProfileForm
     success_url = reverse_lazy('users:profile')
@@ -106,9 +96,8 @@ class UserCartView(TemplateView):
         return context
 
 
-
 @login_required
 def logout(request):
     messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
     auth.logout(request)
-    return redirect(reverse('main:index'))
+    return redirect(reverse('products:index'))
