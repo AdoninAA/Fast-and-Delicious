@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import UserProfile
-from cart.admin import CartTabAdmin  # Ensure this is correct
 
-class UserProfileAdmin(admin.ModelAdmin):
-    inlines = [CartTabAdmin]
+from users.models import User
 
-admin.site.register(UserProfile, UserProfileAdmin)
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ["username", "first_name", "last_name", "email",]
+    search_fields = ["username", "first_name", "last_name", "email",]
