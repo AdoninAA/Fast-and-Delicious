@@ -1,7 +1,7 @@
 .nav-container-wrapper {
   width: 90%; /* 90% ширины родительского элемента */
   margin: 10px auto; /* Центрирование и отступы сверху и снизу */
-  background-color: grey; /* Цвет фона */
+  background-color: #ffffff; /* Цвет фона */
   border-radius: 10px; /* Закругленные углы */
   position: relative; /* Позиция для липкости */
   transition: top 0.3s; /* Плавный переход для верхнего отступа */
@@ -18,7 +18,8 @@
 
 .nav-container {
   padding: 0 2%; /* Внутренние отступы 5% с каждой стороны */
-  background-color: grey; /* Цвет фона */
+  background-color: #ffffff; /* Цвет фона */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px; /* Закругленные углы */
 }
 
