@@ -1,0 +1,64 @@
+.product-card {
+    background-color: #ffffff; /* Серый цвет фона */
+    border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Небольшая тень */
+    padding: 20px;
+    margin: 20px;
+    max-width: 300px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 10px; /* Скругленные углы для изображения */
+    margin-bottom: 15px;
+}
+
+.product-card .product-details {
+    text-align: left;
+}
+
+.product-card h2 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.product-card p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.product-card p strong {
+    color: #28a745; /* Зеленый цвет для цены */
+}
+
+.product-card .price {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card .old-price {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.product-card .new-price {
+    color: #28a745; /* Зеленый цвет для новой цены */
+    font-weight: bold;
+}
+
+.product-card button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.product-card button:hover {
+    background-color: #218838;
+}

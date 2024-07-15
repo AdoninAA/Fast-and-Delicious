@@ -27,4 +27,4 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'slug', 'created_at', 'price', 'old_price', 'image', 'is_available', 'category')
     list_filter = ('category', 'is_available')
     search_fields = ('title', 'description', 'is_available')
-    list_editable = ('price', 'is_available')
+    list_editable = ('description', 'price', 'image', 'is_available')

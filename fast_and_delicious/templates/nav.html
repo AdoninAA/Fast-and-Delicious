@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/nav.css' %}">
+<script src="{% static 'js/product-list.js' %}"></script>
+{% endblock %}
 
-</body>
-</html>
+<div class="nav-container-wrapper">
+    <div class="nav-container">
+        <nav>
+            <ul class="nav">
+                {% for category in categories %}
+                    <li>
+                        <a href="#category-{{ category.id }}">{{ category.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</div>

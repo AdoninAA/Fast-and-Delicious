@@ -13,6 +13,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = _("Категория")
         verbose_name_plural = _("Категории")
+    __str__ = lambda self : self.title
 
 
 class Product(models.Model):
@@ -38,7 +39,7 @@ class Product(models.Model):
     )
     image = models.ImageField(
         verbose_name='Изображение',
-        upload_to='items/',  # Добавить источник
+        upload_to='media/items/',
         blank=True,
     )
     is_available = models.BooleanField(

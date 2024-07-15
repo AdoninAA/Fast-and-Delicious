@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Food Delivery{% endblock %}</title>
+    <title>{% block title %}Fast and Delicious{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/HeaderFooter.css' %}">
 </head>
@@ -10,21 +10,21 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <h1>Food Delivery</h1>
+                <h1><a href="/">Fast and Delicious</a></h1>
             </div>
             <div class="contact-info">
                 <p>Phone: <a href="tel:+18001234567">+1 800 123 4567</a></p>
             </div>
             <div class="header-buttons">
-                <button><li class="nav-item">
-                            <a class="nav-link  text-white" href="{% url "user:login" %}">Login</a>
-                        </li>
-                </button>
+                <form action="/user/login/" method="get">
+                    <button type="submit">Login</button>
+                </form>
             </div>
         </div>
     </header>
 
     <main>
+
         {% block content %}
         <!-- Content will go here -->
         {% endblock %}

@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.PositiveIntegerField(default=1, verbose_name='Количество')),
                 ('cart', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to='cart.cart', verbose_name='Корзина')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.product', verbose_name='Продукт')),
+                ('product.css', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.product.css', verbose_name='Продукт')),
             ],
         ),
     ]

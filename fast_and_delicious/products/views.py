@@ -6,15 +6,17 @@ from .models import Product, Category
 class IndexView(View):
     def get(self, request, *args, **kwargs):
         products = Product.objects.filter(is_available=True)  # Получаем доступные продукты
+        categories = Category.objects.values('title')
         context = {
-            'products': products
+            'products': products,
+            'categories': categories
         }
         return render(request, 'product_list.html', context)
 
 class ProductsDetailView(DetailView):
     model = Product
     pk_url_kwarg = 'product_id'
-    template_name = 'products/product_detail.html'
+    template_name = 'products/product.html'
 
 class CategoryDetailView(DetailView):
     model = Category
