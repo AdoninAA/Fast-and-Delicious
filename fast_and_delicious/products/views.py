@@ -16,7 +16,7 @@ class IndexView(View):
 class ProductsDetailView(DetailView):
     model = Product
     pk_url_kwarg = 'product_id'
-    template_name = 'products/product_detail.html'
+    template_name = 'products/product.html'
 
 class CategoryDetailView(DetailView):
     model = Category
