@@ -17,13 +17,12 @@ from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
 class UserLoginView(LoginView):
     template_name = 'users/login.html'
     form_class = UserLoginForm
-    # success_url = reverse_lazy('main:index')
 
     def get_success_url(self):
         redirect_page = self.request.POST.get('next', None)
         if redirect_page and redirect_page != reverse('user:logout'):
             return redirect_page
-        return reverse_lazy('main:index')
+        return reverse_lazy('products:index')
     
     def form_valid(self, form):
         session_key = self.request.session.session_key
@@ -112,4 +111,4 @@ class UserCartView(TemplateView):
 def logout(request):
     messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
     auth.logout(request)
-    return redirect(reverse('main:index'))
+    return redirect(reverse('products:index'))
