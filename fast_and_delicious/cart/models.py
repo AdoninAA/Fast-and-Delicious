@@ -13,7 +13,6 @@ class Cart(models.Model):
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name='Дата создания',
     )
-    session_key = models.CharField(max_length=40, null=True, blank=True)
 
     @property
     def total_price(self):
