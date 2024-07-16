@@ -1,0 +1,102 @@
+/* Общие стили для контейнера корзины */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Стили для заголовка корзины */
+h2.text-center {
+    color: #333;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Стили для карточки корзины */
+.bg-white {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+/* Стили для списка товаров в корзине */
+#cart-items-container {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#cart-items-container li {
+    padding: 1rem;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+/* Стили для элементов списка корзины */
+#cart-items-container div.d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#cart-items-container span {
+    font-size: 1rem;
+    color: #333;
+}
+
+#cart-items-container .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 5px;
+}
+
+/* Стили для кнопки обновления количества */
+.btn-dark {
+    background-color: #343a40;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-dark:hover {
+    background-color: #23272b;
+    transform: scale(1.05);
+}
+
+/* Стили для кнопки удаления товара */
+.btn-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+/* Стили для сообщения о пустой корзине */
+p.text-center {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Стили для кнопки продолжить покупки */
+.text-center.mt-4 a.btn-dark {
+    background-color: #343a40;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.text-center.mt-4 a.btn-dark:hover {
+    background-color: #23272b;
+    transform: scale(1.05);
+}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/cart_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Ваша корзина</h2>
+    <div class="bg-white rounded custom-shadow p-3">
+      {% if cart.items.all %}
+        <ul id="cart-items-container">
+          {% for item in cart.items.all %}
+            <li class="mb-3">
+              <div class="d-flex align-items-center">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}" class="product-image" />
+                <div class="ml-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span>{{ item.product.title }} (x{{ item.quantity }})</span>
+                    <span>{{ item.product.price|floatformat:2 }} each</span>
+                  </div>
+                  <div class="mt-2 d-flex">
+                    <form action="{% url 'cart:increase_cart_item_quantity' item.id %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-dark btn-sm">Добавить</button>
+                    </form>
+                    <form action="{% url 'cart:decrease_cart_item_quantity' item.id %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-warning btn-sm ml-2">Уменьшить количество</button>
+                    </form>
+                    <form action="{% url 'cart:remove_from_cart' item.id %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-danger btn-sm ml-2">Удалить</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-center">Ваша корзина пуста.</p>
+      {% endif %}
+      <div class="text-center mt-4">
+        <a href="/" class="btn btn-dark">Продолжить покупки</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

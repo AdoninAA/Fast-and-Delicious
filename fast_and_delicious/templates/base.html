@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,28 +10,33 @@
     {% endblock %}
 </head>
 <body>
-    <div class = "page-container" >
+    <div class="page-container">
         <header>
             <div class="header-container">
                 <div class="logo">
                     <h1><a href="/">Fast and Delicious</a></h1>
                 </div>
                 <div class="contact-info">
-                    <p>Phone: <a href="tel:+18001234567">+1 800 123 4567</a></p>
+                    <p><a href="tel:+18001234567">+7 900 123 4567</a></p>
                 </div>
                 <div class="header-buttons">
-                    <form action="/user/login/" method="get">
-                        <button type="submit">Login</button>
-                    </form>
-                    <form action="/user/profile/" method="get">
-                    <button type="submit">Account</button>
+                    {% if user.is_authenticated %}
+                        <form action="/user/profile/" method="get">
+                            <button type="submit">Account</button>
+                        </form>
+                    {% else %}
+                        <form action="/user/login/" method="get">
+                            <button type="submit">Login</button>
+                        </form>
+                    {% endif %}
+                    <form action="/cart/" method="get">
+                        <button type="submit">Cart</button>
                     </form>
                 </div>
             </div>
         </header>
 
         <main class="content">
-
             {% block content %}
             {% endblock %}
         </main>
@@ -39,7 +45,7 @@
             <div class="footer-container">
                 <div class="footer-form">
                     <p>Адрес: Улица Пушкина, дом Колотушкино</p>
-                    <p>Phone: <a href="tel:+18001234567">+1 800 123 4567</a></p>
+                    <p><a href="tel:+18001234567">+7 900 123 4567</a></p>
                 </div>
             </div>
         </footer>
