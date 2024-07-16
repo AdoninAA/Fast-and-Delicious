@@ -22,8 +22,9 @@
         {% endif %}
         <button>
             <li class="nav-item">
-                <a class="nav-link  text-white" href="#">Add to Cart</a>
+                <a class="nav-link  text-white" href="{% url 'cart:add_to_cart' product.id %}">Add to Cart</a>
             </li>
         </button>
     </div>
 </div>
+
