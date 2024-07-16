@@ -1,38 +1,36 @@
 .nav-container-wrapper {
-  width: 90%; /* 90% ширины родительского элемента */
-  margin: 10px auto; /* Центрирование и отступы сверху и снизу */
-  background-color: #ffffff; /* Цвет фона */
-  border-radius: 10px; /* Закругленные углы */
-  position: relative; /* Позиция для липкости */
-  transition: top 0.3s; /* Плавный переход для верхнего отступа */
-  z-index: 1000; /* Положение на переднем плане */
+  width: 90%;
+  margin: 10px auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  position: relative;
+  transition: top 0.3s;
+  z-index: 1000;
 }
 
-/* Липкая навигация */
 .sticky {
-  position: fixed; /* Фиксированное положение */
-  top: 10px; /* Отступ сверху */
-  left: 50%; /* Смещение влево на 50% */
-  transform: translateX(-50%); /* Центрирование с помощью трансформации */
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav-container {
-  padding: 0 2%; /* Внутренние отступы 5% с каждой стороны */
-  background-color: #ffffff; /* Цвет фона */
+  padding: 0 2%;
+  background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px; /* Закругленные углы */
+  border-radius: 10px;
 }
 
-/* Стили для навигации */
 nav {
   display: flex;
   justify-content: center;
-  padding: 1rem 0; /* Отступы только сверху и снизу */
+  padding: 1rem 0;
 }
 
 nav ul.nav {
   display: flex;
-  justify-content: space-between; /* Равномерное распределение элементов */
+  justify-content: space-between;
   width: 100%;
   list-style: none;
   padding: 0;
@@ -40,8 +38,8 @@ nav ul.nav {
 }
 
 nav li {
-  flex: 1; /* Элементы занимают равное пространство */
-  text-align: center; /* Центрирование текста внутри каждого элемента */
+  flex: 1;
+  text-align: center;
   margin: 0 10px;
 }
 
@@ -49,10 +47,10 @@ nav a {
   text-decoration: none;
   color: #333;
   display: block;
-  padding: 10px; /* Можно изменить на ваши значения */
+  padding: 10px;
 }
 
 nav a:hover {
-  background-color: #ddd; /* Можно изменить на ваши значения */
+  background-color: #ddd;
   color: #000;
 }

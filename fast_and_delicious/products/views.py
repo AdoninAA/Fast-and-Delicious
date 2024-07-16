@@ -5,7 +5,7 @@ from django.views.generic import DetailView
 from .models import Product, Category
 class IndexView(View):
     def get(self, request, *args, **kwargs):
-        products = Product.objects.filter(is_available=True)  # Получаем доступные продукты
+        products = Product.objects.filter(is_available=True)
         categories = Category.objects.all()
         context = {
             'products': products,

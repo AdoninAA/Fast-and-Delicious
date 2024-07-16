@@ -1,11 +1,10 @@
-/* Общие стили для страницы */
 html {
     scroll-behavior: smooth;
     font-family: Arial, sans-serif;
 }
 
 .content {
-    flex: 1; /* Позволяет основному контенту занимать доступное пространство */
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center
@@ -14,9 +13,9 @@ html {
 .page-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Устанавливает минимальную высоту для контейнера страницы, чтобы он занимал всю высоту экрана */
+    min-height: 100vh;
 }
-/* Контейнер и форма авторизации */
+
 .container {
     min-width: 1000px;
 }
@@ -49,7 +48,6 @@ html {
     margin-right: 1rem;
 }
 
-/* Стили для заголовка */
 h2.text-center {
     text-align: center;
     color: #333;
@@ -58,7 +56,6 @@ h2.text-center {
     margin-bottom: 1rem;
 }
 
-/* Стили для формы авторизации */
 form {
     display: flex;
     flex-direction: column;
@@ -93,7 +90,6 @@ form {
     margin-bottom: 1rem;
 }
 
-/* Кнопка */
 .btn-dark {
     background-color: #343a40;
     color: #ffffff;
@@ -111,7 +107,6 @@ form {
     transform: scale(1.05);
 }
 
-/* Стили для ссылки "Создать аккаунт" */
 .mt-3 a {
     color: #007bff;
     text-decoration: none;
