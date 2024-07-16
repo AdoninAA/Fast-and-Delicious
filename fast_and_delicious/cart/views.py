@@ -1,10 +1,20 @@
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, RedirectView
+from django.core.mail import send_mail
+from django.shortcuts import redirect
+from django.views.generic import View
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from products.models import Product
 from .models import Cart, CartItem
+
+from django.shortcuts import render
+from django.views.generic import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Cart
 
 class CartDetailView(LoginRequiredMixin, DetailView):
     model = Cart
@@ -14,6 +24,14 @@ class CartDetailView(LoginRequiredMixin, DetailView):
     def get_object(self):
         cart, created = Cart.objects.get_or_create(user=self.request.user)
         return cart
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cart = self.get_object()
+        total_price = sum(item.product.price * item.quantity for item in cart.items.all())
+        context['total_price'] = total_price
+        return context
+
 
 class AddToCartView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
@@ -61,3 +79,27 @@ class DecreaseCartItemQuantityView(LoginRequiredMixin, RedirectView):
             cart_item.delete()  # Remove the item if quantity is 0
 
         return reverse_lazy('cart:cart_detail')
+
+
+class CheckoutView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        cart = Cart.objects.get(user=request.user)
+        items = cart.items.all()
+        total_price = sum(item.product.price * item.quantity for item in items)
+
+        email_subject = 'Ваш заказ'
+        email_body = 'Вы заказали:\n\n'
+        for item in items:
+            email_body += f'{item.product.title} (x{item.quantity}): {item.product.price * item.quantity}\n'
+        email_body += f'\nИтого к оплате: {total_price}'
+
+        send_mail(
+            email_subject,
+            email_body,
+            settings.DEFAULT_FROM_EMAIL,
+            [settings.ADMIN_EMAIL],
+            fail_silently=False
+        )
+
+        cart.items.all().delete()
+        return redirect('cart:cart_detail')
