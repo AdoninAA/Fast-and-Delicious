@@ -5,41 +5,45 @@
     <title>{% block title %}Fast and Delicious{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/HeaderFooter.css' %}">
+    {% block extra_head %}
+    {% endblock %}
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <h1><a href="/">Fast and Delicious</a></h1>
+    <div class = "page-container" >
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    <h1><a href="/">Fast and Delicious</a></h1>
+                </div>
+                <div class="contact-info">
+                    <p>Phone: <a href="tel:+18001234567">+1 800 123 4567</a></p>
+                </div>
+                <div class="header-buttons">
+                    <form action="/user/login/" method="get">
+                        <button type="submit">Login</button>
+                    </form>
+                    <form action="/user/profile/" method="get">
+                        <button type="submit">Account</button>
+                    </form>
+                </div>
             </div>
-            <div class="contact-info">
-                <p>Phone: <a href="tel:+18001234567">+1 800 123 4567</a></p>
-            </div>
-            <div class="header-buttons">
-                <form action="/user/login/" method="get">
-                    <button type="submit">Login</button>
-                </form>
-                <form action="/user/profile/" method="get">
-                    <button type="submit">Account</button>
-                </form>
-            </div>
-        </div>
-    </header>
+        </header>
 
-    <main>
+        <main class="content">
 
-        {% block content %}
-        <!-- Content will go here -->
-        {% endblock %}
-    </main>
+            {% block content %}
+            <!-- Content will go here -->
+            {% endblock %}
+        </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-form">
-                <p>Адрес: Улица Пушкина, дом Колотушкино</p>
-                <p>Phone: <a href="tel:+18001234567">+1 800 123 4567</a></p>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-form">
+                    <p>Адрес: Улица Пушкина, дом Колотушкино</p>
+                    <p>Phone: <a href="tel:+18001234567">+1 800 123 4567</a></p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 </body>
 </html>

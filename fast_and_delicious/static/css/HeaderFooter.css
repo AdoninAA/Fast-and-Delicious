@@ -1,10 +1,17 @@
 
-body {
+html, body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
     margin: 0;
     padding: 0;
+    height: 100%;
+}
 
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Устанавливает минимальную высоту для контейнера страницы, чтобы он занимал всю высоту экрана */
 }
 
 .header-container, .footer-container {
