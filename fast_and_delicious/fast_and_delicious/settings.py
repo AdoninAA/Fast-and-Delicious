@@ -79,6 +79,12 @@ LOGIN_REDIRECT_URL = 'products:index'
 LOGOUT_REDIRECT_URL = 'products:index'
 
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]

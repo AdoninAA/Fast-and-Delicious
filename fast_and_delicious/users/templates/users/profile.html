@@ -1,8 +1,13 @@
-{% extends "base.html" %}
-{% load static %}
-{% load cache %}
-{% load cart_tags %}
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Fast and Delicious{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block extra_head %}
+    {% endblock %}
+</head>
 {% block content %}
 <div class="row">
     <div class="container mt-5">
