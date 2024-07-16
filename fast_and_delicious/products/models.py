@@ -1,32 +1,19 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from taggit.managers import TaggableManager
-from taggit.models import GenericTaggedItemBase, TagBase
 
 
-class ItemTag(TagBase):
-    image = models.ImageField(
-        upload_to='categories/',
-        verbose_name='Изображение',
-        blank=True
-    )
+class Category(models.Model):
+    title = models.CharField(max_length=100)
     description = models.TextField(
         blank=True,
         verbose_name='Описание',
-        )
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = _("Категория")
         verbose_name_plural = _("Категории")
-
-
-class TaggedItem(GenericTaggedItemBase):
-    tag = models.ForeignKey(
-        ItemTag,
-        on_delete=models.CASCADE,
-        related_name="items",
-        verbose_name='Категория',
-    )
+    __str__ = lambda self : self.title
 
 
 class Product(models.Model):
@@ -36,6 +23,7 @@ class Product(models.Model):
         unique=True,
         max_length=50,
     )
+    created_at = models.DateTimeField(auto_now_add=True)
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления', )
     price = models.DecimalField(
         max_digits=8,
@@ -51,14 +39,18 @@ class Product(models.Model):
     )
     image = models.ImageField(
         verbose_name='Изображение',
-        upload_to='items/', #Добавить источник
+        upload_to='media/items/',
         blank=True,
     )
     is_available = models.BooleanField(
         default=True,
         verbose_name='Доступно',
     )
-    tags = TaggableManager(through=TaggedItem, related_name="tagged_items", verbose_name='Категории', )
+    category = models.ForeignKey(
+        Category,
+        related_name='Category',
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.title
@@ -67,4 +59,3 @@ class Product(models.Model):
         ordering = ['-price']
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
-

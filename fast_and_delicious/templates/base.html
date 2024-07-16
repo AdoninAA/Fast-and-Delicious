@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Fast and Delicious{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/HeaderFooter.css' %}">
+    {% block extra_head %}
+    {% endblock %}
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    <h1><a href="/">Fast and Delicious</a></h1>
+                </div>
+                <div class="contact-info">
+                    <p><a href="tel:+18001234567">+7 900 123 4567</a></p>
+                </div>
+                <div class="header-buttons">
+                    {% if user.is_authenticated %}
+                        <form action="/user/profile/" method="get">
+                            <button type="submit">Account</button>
+                        </form>
+                    {% else %}
+                        <form action="/user/login/" method="get">
+                            <button type="submit">Login</button>
+                        </form>
+                    {% endif %}
+                    <form action="/cart/" method="get">
+                        <button type="submit">Cart</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-form">
+                    <p>Адрес: Улица Пушкина, дом Колотушкино</p>
+                    <p><a href="tel:+18001234567">+7 900 123 4567</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

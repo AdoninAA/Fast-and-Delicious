@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}
+Products - Food Delivery
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'nav.html' %}
+<div class="product-list">
+        {% with products.0.category as current_category %}
+            <h2 id="category-{{ current_category.id }}" class="category-title">{{ current_category.title }}</h2>
+            <div class="products-row">
+                {% for product in products %}
+                    {% if product.category != current_category %}
+                        {% with product.category as current_category %}
+                            </div>
+                            <h2 id="category-{{ current_category.id }}" class="category-title">{{ current_category.title }}</h2>
+                            <div  class="products-row">
+                        {% endwith %}
+                    {% endif %}
+                    {% include 'products/product_detail.html' %}
+                {% endfor %}
+            </div>
+        {% endwith %}
+</div>
+{% endblock %}

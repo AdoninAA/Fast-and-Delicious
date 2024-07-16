@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+   web:
+       build: .
+       command: python fast_and_delicious/manage.py runserver localhost:8000
+       volumes:
+         - .:/app
+       ports:
+           - 8000:8000

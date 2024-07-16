@@ -1,0 +1,30 @@
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
+
+<div class="product-card">
+    {% if product.image %}
+    <img src="{{ product.image.url }}" alt="{{ product.title }}">
+    {% else %}
+    <p>Изображения нет</p>
+    {% endif %}
+    <div class="product-details">
+        <h2>{{ product.title }}</h2>
+        <p>{{ product.description }}</p>
+        {% if product.old_price %}
+        <p class="price">
+            <span class="old-price">{{ product.old_price }} </span>
+            <span class="new-price">{{ product.price }} </span>
+        </p>
+        {% else %}
+        <p><strong>Price:</strong> {{ product.price }} </p>
+        {% endif %}
+        <button>
+            <li class="nav-item">
+                <a class="nav-link  text-white" href="{% url 'cart:add_to_cart' product.id %}">Add to Cart</a>
+            </li>
+        </button>
+    </div>
+</div>
+
