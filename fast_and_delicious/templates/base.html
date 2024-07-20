@@ -22,15 +22,15 @@
                 <div class="header-buttons">
                     {% if user.is_authenticated %}
                         <form action="/user/profile/" method="get">
-                            <button type="submit">Account</button>
+                            <button type="submit">{{ user.username }}</button>
                         </form>
                     {% else %}
                         <form action="/user/login/" method="get">
-                            <button type="submit">Login</button>
+                            <button type="submit">Войти</button>
                         </form>
                     {% endif %}
                     <form action="/cart/" method="get">
-                        <button type="submit">Cart</button>
+                        <button type="submit">Корзина</button>
                     </form>
                 </div>
             </div>
@@ -52,3 +52,4 @@
     </div>
 </body>
 </html>
+

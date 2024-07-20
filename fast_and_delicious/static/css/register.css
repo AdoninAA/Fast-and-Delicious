@@ -17,7 +17,7 @@ body {
 }
 
 .container {
-    min-width: 1000px;
+    min-width: 100%;
 }
 
 .bg-white {
